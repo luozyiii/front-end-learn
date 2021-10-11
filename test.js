@@ -1,19 +1,21 @@
 /**
- * @param {number[]} digits
- * @return {number[]}
+ * @param {number[]} nums
+ * @return {void} Do not return anything, modify nums in-place instead.
  */
-var plusOne = function(digits) {
-    let len = digits.length
-    for(let i = len - 1; i > 0; i--) {
-        digits[i]++
-        if(digits[i] % 10 != 0) {
-            return digits
+ var moveZeroes = function(nums) {
+    // 边界控制
+    if(nums === null || nums.length === 0) {
+        return 0
+    }
+    let i = 0;
+    for(let j = 0; j < nums.length; j++){
+        if(nums[j] != 0) {
+            let temp = nums[i]
+            nums[i] = nums[j]
+            nums[j] = temp
+            i++
         }
     }
-    digits = [...Array(len + 1)].map(_=>0)
-    digits[0] = 1
-    return digits
+    return nums
 };
-
-plusOne([1,2,3])
-plusOne([4,9,9])
+moveZeroes([0,1,0,3,12])
